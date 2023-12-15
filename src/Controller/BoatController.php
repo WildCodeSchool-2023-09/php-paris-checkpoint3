@@ -36,51 +36,32 @@ class BoatController extends AbstractController
     EntityManagerInterface $entityManager): Response
     {
         $boat = $boatRepository->findOneBy([]);
-
+        $newX = $boat->getCoordX();
+        $newY = $boat->getCoordY();
+    
         if ($direction === 'N') {
-            if($mapManager->tileExists($boat->getCoordX(), $boat->getCoordY() - 1)){
-                $boat->setCoordX($boat->getCoordX());
-                $boat->setCoordY($boat->getCoordY() - 1);
-            }
-            else {
-                $this->addFlash('warning', 'Hop hop hop ! On essaie pas de sortir de la carte !');
-            }
+            $newY -= 1;
+        } elseif ($direction === 'S') {
+            $newY += 1;
+        } elseif ($direction === 'E') {
+            $newX += 1;
+        } else {
+            $newX -= 1;
         }
-        else if ($direction === 'S') {
-            if($mapManager->tileExists($boat->getCoordX(), $boat->getCoordY() + 1)){
-                $boat->setCoordX($boat->getCoordX());
-                $boat->setCoordY($boat->getCoordY() + 1);
-            }
-            else {
-                $this->addFlash('warning', 'Hop hop hop ! On essaie pas de sortir de la carte !');
-            }
+    
+        if ($mapManager->tileExists($newX, $newY)) {
+            $boat->setCoordX($newX);
+            $boat->setCoordY($newY);
+        } else {
+            $this->addFlash('warning', 'Hop hop hop ! On essaie pas de sortir de la carte !');
         }
-        else if ($direction === 'E') {
-            if($mapManager->tileExists($boat->getCoordX() + 1, $boat->getCoordY())){
-                $boat->setCoordX($boat->getCoordX() + 1);
-                $boat->setCoordY($boat->getCoordY());
-            }
-            else {
-                $this->addFlash('warning', 'Hop hop hop ! On essaie pas de sortir de la carte !');
-
-            }
-        }
-        else {
-            if($mapManager->tileExists($boat->getCoordX() - 1, $boat->getCoordY())){
-                $boat->setCoordX($boat->getCoordX() - 1);
-                $boat->setCoordY($boat->getCoordY());
-            }
-            else {
-                $this->addFlash('warning', 'Hop hop hop ! On essaie pas de sortir de la carte !');
-            }
-        }
-
+    
         $entityManager->flush();
-
+    
         if ($mapManager->checkTreasure($boat) === true) {
             $this->addFlash('success', 'Tu as trouvé le trésor !');
         }
-
+    
         return $this->redirectToRoute('map');
     }
 }
