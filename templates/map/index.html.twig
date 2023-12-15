@@ -55,6 +55,9 @@
 						Information
 					</h2>
 					{# Add here informations about current ship position #}
+					<p>Bateau X : {{ boat.coordX }}</p>
+					<p>Bateau Y : {{ boat.coordY }}</p>
+					<p>Type de la tuile : {{ map[boat.coordX][boat.coordY].type }}</p>
 				</div>
 				<div
 					class="navigation">
@@ -62,6 +65,14 @@
 						Navigation
 					</h2>
 					{# Add here N/S/E/W buttons #}
+					<div class="row">
+						<a class="col btn btn-light m-2" href="{{ path('moveDirection', { direction: 'N'}) }}">North</a>
+						<a class="col btn btn-light m-2" href="{{ path('moveDirection', { direction: 'S'}) }}">South</a>
+					</div>
+					<div class="row">
+						<a class="col btn btn-light m-2" href="{{ path('moveDirection', { direction: 'W'}) }}">West</a>
+						<a class="col btn btn-light m-2" href="{{ path('moveDirection', { direction: 'E'}) }}">East</a>
+					</div>
 				</div>
 			</div>
 		</div>
