@@ -20,4 +20,15 @@ class MapManager
             return true;
         }
     }
+
+    public function getRandomIsland(array $tiles)
+    {
+        $tiles = $this->tileRepository->findAll();
+
+        foreach($tiles as $key => $type) {
+            if ($type === 'island') {
+                return array_rand($tiles, 1);
+            }
+        }
+    }
 }
