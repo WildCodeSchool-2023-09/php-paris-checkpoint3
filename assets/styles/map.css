@@ -80,6 +80,13 @@
     padding-top: 0.2em;
 }
 
+.navigation a {
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    background-color: red;
+}
+
 .infos {
     background-image: url('../images/map.jpg');
     width: 100%;
@@ -92,3 +99,4 @@
 h2 {
     font-size: 1.3em;
 }
+
