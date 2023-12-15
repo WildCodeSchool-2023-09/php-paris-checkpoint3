@@ -55,6 +55,13 @@
 						Information
 					</h2>
 					{# Add here informations about current ship position #}
+					Coordinates :
+					<ul>
+						<li>X: {{ boat.coordX }}</li>
+						<li>Y: {{ boat.coordY }}</li>
+					</ul>
+					Currently on : {{ map[boat.coordX][boat.coordY].type }}
+
 				</div>
 				<div
 					class="navigation">
@@ -62,6 +69,12 @@
 						Navigation
 					</h2>
 					{# Add here N/S/E/W buttons #}
+					<div class="directions">
+						<a id="N" href="{{ path('moveDirection', {direction: 'N'}) }}">North</a>
+						<a id="S" href="{{ path('moveDirection', {direction: 'S'}) }}">South</a>
+						<a id="E" href="{{ path('moveDirection', {direction: 'E'}) }}">East</a>
+						<a id="W" href="{{ path('moveDirection', {direction: 'W'}) }}">West</a>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -80,6 +80,39 @@
     padding-top: 0.2em;
 }
 
+.navigation .directions {
+    position: relative;
+    width: 250px;
+    height: 280px;
+}
+
+.navigation .directions a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: red;
+    font-family: var(--main-font);
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+}
+
+#N {
+    top: 0;
+    left: 40%;
+}
+#S {
+    bottom: 0;
+    left: 40%;
+}
+#E {
+    top: 40%;
+    right: 0;
+}
+#W {
+    top: 40%;
+    left: 0;
+}
+
 .infos {
     background-image: url('../images/map.jpg');
     width: 100%;
