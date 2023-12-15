@@ -62,6 +62,13 @@
 						Navigation
 					</h2>
 					{# Add here N/S/E/W buttons #}
+					{# Add four links on the map view to allow the user to move the 4 possible ways. Put your buttons in the div class "navigation" (it already exists). #}
+					<ul>
+						<li><a href="{{ path('moveDirecion', { direction : 'N'}) }}">N</li>
+						<li><a href="{{ path('moveDirecion', { direction : 'S'}) }}">S</li>
+						<li><a href="{{ path('moveDirecion', { direction : 'E'}) }}">E</li>
+						<li><a href="{{ path('moveDirecion', { direction : 'W'}) }}">W</li>
+					</ul>
 				</div>
 			</div>
 		</div>
